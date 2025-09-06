@@ -8,28 +8,32 @@ function ThemeToggle() {
 
     useEffect(() => {
         setMounted(true);
-        const stored = typeof window !== "undefined" ? localStorage.getItem("theme") : null;
-        const prefersDark = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-        const shouldBeDark = stored ? stored === "dark" : prefersDark;
-        setIsDark(shouldBeDark);
-        const root = document.documentElement;
-        if (shouldBeDark) {
-            root.classList.add("dark");
-        } else {
-            root.classList.remove("dark");
+        if (typeof window !== "undefined") {
+            const stored = localStorage.getItem("theme");
+            const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+            const shouldBeDark = stored ? stored === "dark" : prefersDark;
+            setIsDark(shouldBeDark);
+            const root = document.documentElement;
+            if (shouldBeDark) {
+                root.classList.add("dark");
+            } else {
+                root.classList.remove("dark");
+            }
         }
     }, []);
 
     const toggle = () => {
         const next = !isDark;
         setIsDark(next);
-        const root = document.documentElement;
-        if (next) {
-            root.classList.add("dark");
-            localStorage.setItem("theme", "dark");
-        } else {
-            root.classList.remove("dark");
-            localStorage.setItem("theme", "light");
+        if (typeof window !== "undefined") {
+            const root = document.documentElement;
+            if (next) {
+                root.classList.add("dark");
+                localStorage.setItem("theme", "dark");
+            } else {
+                root.classList.remove("dark");
+                localStorage.setItem("theme", "light");
+            }
         }
     };
 
