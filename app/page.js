@@ -8,6 +8,7 @@ import Skills from "./components/homepage/skills";
 
 // Force dynamic rendering to avoid SSR issues
 export const dynamic = 'force-dynamic';
+// Updated to fix deployment issues
 
 export default async function Home() {
   return (
