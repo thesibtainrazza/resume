@@ -1,0 +1,2 @@
+console.log("EMAIL_ADDRESS:", process.env.EMAIL_ADDRESS);
+console.log("GMAIL_PASSKEY:", process.env.GMAIL_PASSKEY);
